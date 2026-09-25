@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useState } from 'react';
+import { Logo } from './Logo';
 import { 
   ShieldCheck, 
   Search, 
@@ -61,14 +62,10 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Logo */}
           <button 
             onClick={() => handleNavClick('gerador-e-validador')}
-            className="flex items-center gap-2.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4edea3] rounded-lg p-1 group text-left"
+            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4edea3] rounded-lg p-1 group text-left transition-transform active:scale-95"
+            aria-label="Ir para Gerador e Validador"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#191f31] border border-[#3c4a42] flex items-center justify-center text-[#4edea3] group-hover:border-[#4edea3]/50 transition-colors shadow-sm">
-              <ShieldCheck className="w-5 h-5 text-[#4edea3]" />
-            </div>
-            <span className="font-sans text-lg font-semibold tracking-tight text-[#dce1fb]">
-              Gerar <span className="text-[#4edea3]">CPF</span>
-            </span>
+            <Logo size="md" />
           </button>
 
           {/* RFB Badge - Desktop */}

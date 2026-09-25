@@ -5,6 +5,7 @@
 import React from 'react';
 import { ShieldCheck, CheckCircle2, AlertTriangle, ExternalLink } from 'lucide-react';
 import { NavTab } from './Header';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onNavigate: (tab: NavTab) => void;
@@ -18,14 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDisclaimerModa
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand & Mission */}
           <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-[#191f31] border border-[#3c4a42] flex items-center justify-center text-[#4edea3]">
-                <ShieldCheck className="w-4 h-4 text-[#4edea3]" />
-              </div>
-              <span className="font-sans text-lg font-semibold tracking-tight text-[#dce1fb]">
-                Gerar <span className="text-[#4edea3]">CPF</span>
-              </span>
-            </div>
+            <Logo size="md" showBadge={true} />
             <p className="text-[#bbcabf] text-xs leading-relaxed">
               Suíte técnica de validação e geração de dados sintéticos para desenvolvedores, QA e sistemas transacionais. Algoritmos nativos no navegador sem retenção de dados ou telemetria.
             </p>
