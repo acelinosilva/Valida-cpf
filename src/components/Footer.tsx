@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDisclaimerModa
                 <ShieldCheck className="w-4 h-4 text-[#4edea3]" />
               </div>
               <span className="font-sans text-lg font-semibold tracking-tight text-[#dce1fb]">
-                Valida<span className="text-[#4edea3]">Dev</span>
+                Gerar <span className="text-[#4edea3]">CPF</span>
               </span>
             </div>
             <p className="text-[#bbcabf] text-xs leading-relaxed">
@@ -164,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenDisclaimerModa
         {/* Bottom Bar & Permanent Legal Disclaimer */}
         <div className="pt-6 border-t border-[#23293c]/60 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#bbcabf]">
           <div className="flex flex-wrap items-center gap-4 text-center md:text-left">
-            <p>© 2026 ValidaDev Engine. Todos os direitos reservados.</p>
+            <p>© 2026 Gerar CPF. Todos os direitos reservados.</p>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => onNavigate('politicas')}

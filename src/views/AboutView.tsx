@@ -33,7 +33,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenDisclaimer, onNaviga
           Engenharia de Software &amp; QA
         </div>
         <h1 className="font-sans text-2xl sm:text-3xl font-semibold text-[#dce1fb] tracking-tight">
-          Sobre o ValidaDev Engine
+          Sobre o Gerar CPF
         </h1>
         <p className="font-sans text-xs sm:text-sm text-[#bbcabf] mt-1.5 leading-relaxed max-w-3xl">
           Construído por desenvolvedores e para desenvolvedores com a missão de erradicar ferramentas legadas, lentas e cheias de spam do fluxo diário de testes.
@@ -51,7 +51,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenDisclaimer, onNaviga
             Durante anos, desenvolvedores e profissionais de QA no Brasil dependeram de sites antiquados, lentos, repletos de pop-ups intrusivos e sem suporte para teclados para simplesmente obter ou testar um número de CPF ou CNPJ.
           </p>
           <p>
-            O <strong className="text-[#dce1fb]">ValidaDev</strong> foi criado para redefinir esse padrão: oferecemos uma ferramenta de alta densidade visual (inspirada no estilo técnico de interfaces como Linear e Raycast), com respostas em sub-milissegundos, atalhos de teclado (como <kbd className="px-1.5 py-0.5 rounded bg-[#070d1f] text-[#4edea3] font-mono text-[10px]">Espaço</kbd> e <kbd className="px-1.5 py-0.5 rounded bg-[#070d1f] text-[#4edea3] font-mono text-[10px]">Alt + C</kbd>), e geração em lote para frameworks modernos como Playwright, Cypress e k6.
+            O <strong className="text-[#dce1fb]">Gerar CPF</strong> foi criado para redefinir esse padrão: oferecemos uma ferramenta de alta densidade visual, com respostas em sub-milissegundos, atalhos de teclado (como <kbd className="px-1.5 py-0.5 rounded bg-[#070d1f] text-[#4edea3] font-mono text-[10px]">Espaço</kbd> e <kbd className="px-1.5 py-0.5 rounded bg-[#070d1f] text-[#4edea3] font-mono text-[10px]">Alt + C</kbd>), e geração em lote para frameworks modernos como Playwright, Cypress e k6.
           </p>
         </div>
 

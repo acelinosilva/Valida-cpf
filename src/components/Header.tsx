@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
               <ShieldCheck className="w-5 h-5 text-[#4edea3]" />
             </div>
             <span className="font-sans text-lg font-semibold tracking-tight text-[#dce1fb]">
-              Valida<span className="text-[#4edea3]">Dev</span>
+              Gerar <span className="text-[#4edea3]">CPF</span>
             </span>
           </button>
 
