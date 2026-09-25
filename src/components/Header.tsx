@@ -5,17 +5,14 @@
 import React, { useState } from 'react';
 import { 
   ShieldCheck, 
-  Lock, 
   Search, 
   Menu, 
   X, 
-  ExternalLink,
-  HelpCircle,
-  FileText,
-  Info,
-  Terminal,
-  Layers,
-  Sparkles
+  HelpCircle, 
+  FileText, 
+  Info, 
+  Layers, 
+  Sparkles 
 } from 'lucide-react';
 
 export type NavTab = 
@@ -45,8 +42,6 @@ export const Header: React.FC<HeaderProps> = ({
   const navItems: { id: NavTab; label: string; icon: React.ReactNode }[] = [
     { id: 'gerador-e-validador', label: 'Gerador & Validador', icon: <Sparkles className="w-4 h-4" /> },
     { id: 'lote-massa-de-testes', label: 'Lote / Massa de Testes', icon: <Layers className="w-4 h-4" /> },
-    { id: 'api-e-integracao', label: 'API & Integração', icon: <Terminal className="w-4 h-4" /> },
-    { id: 'extensao-chrome', label: 'Extensão Chrome', icon: <ExternalLink className="w-4 h-4" /> },
     { id: 'faq', label: 'FAQ', icon: <HelpCircle className="w-4 h-4" /> },
     { id: 'sobre', label: 'Sobre', icon: <Info className="w-4 h-4" /> },
     { id: 'politicas', label: 'Políticas & Termos', icon: <FileText className="w-4 h-4" /> },
@@ -84,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Desktop Nav Items */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Navegação Principal">
-            {navItems.slice(0, 4).map((item) => {
+            {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
                 <button
@@ -105,12 +100,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Right Action Icons & Badges */}
         <div className="flex items-center gap-2.5 sm:gap-3">
-          {/* Offline-First Badge */}
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#191f31] text-[#4edea3] font-mono text-[10px] font-semibold uppercase border border-[#3c4a42]/50 shadow-inner">
-            <Lock className="w-3 h-3 text-[#4edea3]" />
-            <span>Offline-First</span>
-          </div>
-
           {/* Search / Command Palette Trigger */}
           <button
             onClick={onOpenSearch}

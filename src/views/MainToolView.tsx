@@ -22,7 +22,13 @@ import {
   HelpCircle,
   Sparkles,
   BookOpen,
-  ArrowRight
+  ArrowRight,
+  ChevronDown,
+  ChevronUp,
+  ShieldAlert,
+  MousePointerClick,
+  FileCheck2,
+  Lock
 } from 'lucide-react';
 import { 
   generateCPF, 
@@ -70,6 +76,18 @@ export const MainToolView: React.FC<MainToolViewProps> = ({
   const [cpfResult, setCpfResult] = useState<CpfValidationResult | null>(null);
   const [cnpjResult, setCnpjResult] = useState<CnpjValidationResult | null>(null);
   const [detectedType, setDetectedType] = useState<'CPF' | 'CNPJ' | 'NONE'>('NONE');
+  const [openFaqIds, setOpenFaqIds] = useState<Record<string, boolean>>({
+    'home-faq-1': true,
+    'home-faq-2': false,
+    'home-faq-3': false,
+    'home-faq-4': false,
+    'home-faq-5': false,
+    'home-faq-6': false
+  });
+
+  const toggleHomeFaq = (id: string) => {
+    setOpenFaqIds((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   // Generator Function
   const handleGenerate = useCallback(() => {
@@ -229,29 +247,41 @@ export const MainToolView: React.FC<MainToolViewProps> = ({
 
       {/* Hero / Context Header Bar */}
       <div className="pb-6 sm:pb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[#23293c]/50">
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#191f31] text-[#4edea3] font-mono text-[10px] font-semibold uppercase mb-2 border border-[#3c4a42]/50 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3] animate-ping"></span>
-            Motor Criptográfico Módulo 11 v3.4
+            Algoritmo Oficial da Receita Federal • 100% Gratuito
           </div>
           <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl text-[#dce1fb] font-semibold tracking-tight leading-tight">
-            Validação &amp; Geração <span className="text-[#4edea3]">Instantânea</span> para Devs e QA
+            Gerador e Validador de CPF e CNPJ <span className="text-[#4edea3]">Atualizado</span>
           </h1>
-          <p className="font-sans text-xs sm:text-sm text-[#bbcabf] mt-1.5 leading-relaxed">
-            Algoritmo nativo client-side com validação dos 2 dígitos verificadores oficiais da Receita Federal. Zero chamadas externas, privacidade total e resposta sub-milissegundo.
+          <p className="font-sans text-xs sm:text-sm text-[#bbcabf] mt-2 leading-relaxed">
+            Crie números válidos para preencher cadastros e formulários de teste ou confira se um CPF ou CNPJ foi digitado corretamente. É 100% gratuito, seguro e muito simples de usar: clique no botão para gerar e copiar um número na hora, ou cole qualquer documento na caixa ao lado para descobrir se ele está certo.
           </p>
+
+          {/* Guia Rápido e Descomplicado para Usuários */}
+          <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <div className="flex items-center gap-2 p-2 rounded-lg bg-[#151b2d] border border-[#23293c]/70 text-[#cbd5e1]">
+              <span className="w-5 h-5 rounded-full bg-[#4edea3]/10 text-[#4edea3] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4edea3]/30">1</span>
+              <span><strong>Para gerar:</strong> Escolha CPF ou CNPJ e clique em <em>Gerar Novo Documento</em>.</span>
+            </div>
+            <div className="flex items-center gap-2 p-2 rounded-lg bg-[#151b2d] border border-[#23293c]/70 text-[#cbd5e1]">
+              <span className="w-5 h-5 rounded-full bg-[#4cd7f6]/10 text-[#4cd7f6] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4cd7f6]/30">2</span>
+              <span><strong>Para testar:</strong> Cole o número na caixa da direita e veja se ele é válido na hora.</span>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 self-start lg:self-end">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 self-start lg:self-end shrink-0">
           <div className="px-3 py-1.5 rounded-lg bg-[#23293c] text-[#bbcabf] font-mono text-xs flex items-center gap-2 border border-[#3c4a42]/40 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#4edea3]"></span>
-            <span>Engine: WebAssembly/JS Puro</span>
+            <span>Direto no seu Navegador</span>
           </div>
           <div className="px-3 py-1.5 rounded-lg bg-[#191f31] text-[#4cd7f6] font-mono text-xs flex items-center gap-2 border border-[#3c4a42]/40 shadow-sm">
             <kbd className="px-1.5 py-0.5 rounded bg-[#070d1f] text-[#4cd7f6] text-[10px] border border-[#3c4a42]/40">
               Espaço
             </kbd>
-            <span className="text-[#bbcabf] font-sans text-xs">Novo</span>
+            <span className="text-[#bbcabf] font-sans text-xs">Gerar Novo</span>
           </div>
         </div>
       </div>
@@ -971,6 +1001,212 @@ export const MainToolView: React.FC<MainToolViewProps> = ({
             <span>Ir para Lote / Massa de Testes</span>
             <ArrowRight className="w-4 h-4 text-[#4edea3]" />
           </button>
+        </div>
+      </section>
+
+      {/* SEÇÃO: PARA QUE SERVE A FERRAMENTA (CASOS DE USO REAIS E LEGÍTIMOS) */}
+      <section className="mt-12 pt-8 border-t border-[#23293c]/60 flex flex-col gap-6">
+        <div>
+          <div className="inline-flex items-center gap-1 text-[#4edea3] font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+            <Sparkles className="w-4 h-4" />
+            <span>Finalidades e Aplicações</span>
+          </div>
+          <h2 className="font-sans text-xl sm:text-2xl font-semibold text-[#dce1fb]">
+            Para que serve esta ferramenta?
+          </h2>
+          <p className="text-xs sm:text-sm text-[#bbcabf] mt-1 max-w-3xl leading-relaxed">
+            Desenvolvida para economizar tempo e trazer segurança jurídica, privacidade e eficiência para quem cria e testa tecnologia.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="bg-[#151b2d] p-5 rounded-xl border border-[#23293c] flex flex-col gap-2.5">
+            <div className="w-9 h-9 rounded-lg bg-[#4edea3]/10 border border-[#4edea3]/30 flex items-center justify-center text-[#4edea3]">
+              <FileCheck2 className="w-5 h-5 text-[#4edea3]" />
+            </div>
+            <h3 className="font-sans text-sm font-semibold text-[#dce1fb]">Preencher Formulários e Cadastros</h3>
+            <p className="text-xs text-[#bbcabf] leading-relaxed">
+              Muitos sites, lojas virtuais e aplicativos bloqueiam o cadastro se o CPF ou CNPJ não for matematicamente válido. Esta ferramenta gera números que passam nessa verificação inicial sem que você precise usar documentos reais.
+            </p>
+          </div>
+
+          <div className="bg-[#151b2d] p-5 rounded-xl border border-[#23293c] flex flex-col gap-2.5">
+            <div className="w-9 h-9 rounded-lg bg-[#4cd7f6]/10 border border-[#4cd7f6]/30 flex items-center justify-center text-[#4cd7f6]">
+              <Lock className="w-5 h-5 text-[#4cd7f6]" />
+            </div>
+            <h3 className="font-sans text-sm font-semibold text-[#dce1fb]">Segurança e Conformidade com a LGPD</h3>
+            <p className="text-xs text-[#bbcabf] leading-relaxed">
+              Equipes de empresas e programadores não podem utilizar CPFs de clientes reais em bancos de dados de teste por exigência da Lei Geral de Proteção de Dados (LGPD). O ValidaDev resolve isso fornecendo dados puramente fictícios.
+            </p>
+          </div>
+
+          <div className="bg-[#151b2d] p-5 rounded-xl border border-[#23293c] flex flex-col gap-2.5">
+            <div className="w-9 h-9 rounded-lg bg-[#c0c1ff]/10 border border-[#c0c1ff]/30 flex items-center justify-center text-[#c0c1ff]">
+              <CheckCircle2 className="w-5 h-5 text-[#c0c1ff]" />
+            </div>
+            <h3 className="font-sans text-sm font-semibold text-[#dce1fb]">Conferir se Digitou Corretamente</h3>
+            <p className="text-xs text-[#bbcabf] leading-relaxed">
+              Digitou um número de documento e deu erro em algum sistema? Cole aqui para descobrir na hora se faltou algum dígito, se os números verificadores estão trocados ou se foi apenas um erro de digitação.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO: COMO USAR A FERRAMENTA PASSO A PASSO */}
+      <section className="mt-12 pt-8 border-t border-[#23293c]/60 flex flex-col gap-6">
+        <div>
+          <div className="inline-flex items-center gap-1 text-[#4cd7f6] font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+            <MousePointerClick className="w-4 h-4" />
+            <span>Guia Passo a Passo</span>
+          </div>
+          <h2 className="font-sans text-xl sm:text-2xl font-semibold text-[#dce1fb]">
+            Como usar o Gerador e o Validador
+          </h2>
+          <p className="text-xs sm:text-sm text-[#bbcabf] mt-1 max-w-3xl leading-relaxed">
+            Não é necessário cadastro, login ou download. Tudo funciona direto no seu navegador com dois cliques.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Card: Como Gerar */}
+          <div className="bg-[#151b2d] p-5 sm:p-6 rounded-xl border border-[#23293c] flex flex-col gap-4">
+            <div className="flex items-center gap-2.5 text-[#4edea3]">
+              <Zap className="w-5 h-5 text-[#4edea3]" />
+              <h3 className="font-sans text-base font-semibold text-[#dce1fb]">
+                Como Gerar um Documento Novo
+              </h3>
+            </div>
+            <ol className="space-y-3 text-xs text-[#cbd5e1] leading-relaxed list-none">
+              <li className="flex items-start gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-[#4edea3]/10 text-[#4edea3] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4edea3]/30 mt-0.5">1</span>
+                <div>
+                  <strong className="text-[#f8fafc]">Escolha o tipo:</strong> Clique no botão <span className="font-mono text-[#4edea3] bg-[#070d1f] px-1.5 py-0.5 rounded border border-[#23293c]">CPF PESSOA</span> ou <span className="font-mono text-[#4edea3] bg-[#070d1f] px-1.5 py-0.5 rounded border border-[#23293c]">CNPJ EMPRESA</span> no topo do quadro à esquerda.
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-[#4edea3]/10 text-[#4edea3] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4edea3]/30 mt-0.5">2</span>
+                <div>
+                  <strong className="text-[#f8fafc]">Defina as opções (opcional):</strong> Marque ou desmarque a opção <em>"Pontuação Formatada"</em> se desejar o número com pontos e traço (ex: <code>000.000.000-00</code>) ou apenas os números puros.
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-[#4edea3]/10 text-[#4edea3] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4edea3]/30 mt-0.5">3</span>
+                <div>
+                  <strong className="text-[#f8fafc]">Copie na hora:</strong> Clique no botão verde <em>"Gerar Novo Documento"</em> (ou aperte a tecla <kbd className="px-1.5 py-0.5 bg-[#070d1f] font-mono text-[10px] text-[#4edea3] rounded border border-[#23293c]">Espaço</kbd>) e depois em <em>"Copiar"</em> para colar onde precisar.
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          {/* Card: Como Validar */}
+          <div className="bg-[#151b2d] p-5 sm:p-6 rounded-xl border border-[#23293c] flex flex-col gap-4">
+            <div className="flex items-center gap-2.5 text-[#4cd7f6]">
+              <CheckCircle2 className="w-5 h-5 text-[#4cd7f6]" />
+              <h3 className="font-sans text-base font-semibold text-[#dce1fb]">
+                Como Conferir e Validar um Documento
+              </h3>
+            </div>
+            <ol className="space-y-3 text-xs text-[#cbd5e1] leading-relaxed list-none">
+              <li className="flex items-start gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-[#4cd7f6]/10 text-[#4cd7f6] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4cd7f6]/30 mt-0.5">1</span>
+                <div>
+                  <strong className="text-[#f8fafc]">Cole o número:</strong> Digite ou cole o CPF ou CNPJ no campo da direita. Não se preocupe com pontos, traços ou espaços — o validador limpa tudo automaticamente.
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-[#4cd7f6]/10 text-[#4cd7f6] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4cd7f6]/30 mt-0.5">2</span>
+                <div>
+                  <strong className="text-[#f8fafc]">Resultado imediato:</strong> Se o número for matematicamente correto, surgirá o selo verde <span className="text-[#4edea3] font-semibold">"CPF VÁLIDO"</span> ou <span className="text-[#4edea3] font-semibold">"CNPJ VÁLIDO"</span>.
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="w-5 h-5 rounded-full bg-[#4cd7f6]/10 text-[#4cd7f6] flex items-center justify-center font-bold text-[11px] shrink-0 border border-[#4cd7f6]/30 mt-0.5">3</span>
+                <div>
+                  <strong className="text-[#f8fafc]">Diagnóstico do erro:</strong> Se houver erro, a ferramenta explica exatamente o que está errado (por exemplo, se o primeiro ou o segundo dígito verificador não batem).
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO: PERGUNTAS FREQUENTES (FAQ NA TELA INICIAL) */}
+      <section className="mt-12 pt-8 border-t border-[#23293c]/60 flex flex-col gap-6">
+        <div>
+          <div className="inline-flex items-center gap-1 text-[#c0c1ff] font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+            <HelpCircle className="w-4 h-4" />
+            <span>Tire Suas Dúvidas</span>
+          </div>
+          <h2 className="font-sans text-xl sm:text-2xl font-semibold text-[#dce1fb]">
+            Perguntas Frequentes sobre CPF e CNPJ
+          </h2>
+          <p className="text-xs sm:text-sm text-[#bbcabf] mt-1 max-w-3xl leading-relaxed">
+            As principais respostas para quem utiliza geradores e validadores de documentos no dia a dia.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          {[
+            {
+              id: 'home-faq-1',
+              question: 'Os números de CPF ou CNPJ gerados são de pessoas reais?',
+              answer: 'Não. Todos os números gerados pelo ValidaDev são combinações aleatórias criadas na hora pelo seu próprio navegador usando fórmulas matemáticas. Eles passam nos testes porque os dois últimos números (dígitos verificadores) foram calculados corretamente, mas não pertencem a nenhuma pessoa física ou empresa verdadeira.'
+            },
+            {
+              id: 'home-faq-2',
+              question: 'Posso usar um CPF gerado para comprar ou abrir contas na internet?',
+              answer: 'Nunca. O uso de documentos gerados para abrir contas bancárias, solicitar cartões de crédito, fazer compras ou qualquer atividade real configura crime de falsidade ideológica (Artigo 299) e estelionato (Artigo 171 do Código Penal). Esta ferramenta serve exclusivamente para testes de software, estudos de programação e simulação de cadastros em homologação.'
+            },
+            {
+              id: 'home-faq-3',
+              question: 'É seguro digitar o meu documento nesta página?',
+              answer: 'Sim, é totalmente seguro. A validação acontece 100% no seu próprio computador ou celular através do navegador. O site não envia os números para nenhum servidor na internet e não guarda nenhum tipo de histórico ou banco de dados.'
+            },
+            {
+              id: 'home-faq-4',
+              question: 'Por que números como 111.111.111-11 ou 000.000.000-00 dão como inválidos?',
+              answer: 'Embora esses números repetidos consigam passar pela fórmula matemática tradicional, a Receita Federal do Brasil criou uma regra que rejeita expressamente qualquer CPF com todos os dígitos iguais para evitar fraudes simples. Nosso sistema segue à risca essa mesma regra oficial.'
+            },
+            {
+              id: 'home-faq-5',
+              question: 'O que muda no Novo CNPJ Alfanumérico a partir de 2026?',
+              answer: 'Como os números de CNPJ estavam acabando no Brasil, a Receita Federal determinou que os novos CNPJs poderão conter letras e números misturados nos primeiros 12 caracteres (exemplo: 12ABC3450001). Apenas os 2 últimos dígitos continuarão sendo puramente numéricos. O ValidaDev já está preparado e gera esse novo formato.'
+            },
+            {
+              id: 'home-faq-6',
+              question: 'A ferramenta é realmente gratuita? Há limite de uso?',
+              answer: 'Sim, a ferramenta é totalmente gratuita, sem necessidade de pagamento, sem cadastro de e-mail e sem limite diário de uso. Você pode gerar e validar quantos documentos desejar.'
+            }
+          ].map((item) => {
+            const isOpen = !!openFaqIds[item.id];
+            return (
+              <div
+                key={item.id}
+                className="bg-[#151b2d] border border-[#23293c] rounded-xl overflow-hidden transition-all shadow-sm"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleHomeFaq(item.id)}
+                  className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 hover:bg-[#191f31]/60 transition-colors"
+                >
+                  <span className="font-sans text-xs sm:text-sm font-semibold text-[#dce1fb]">
+                    {item.question}
+                  </span>
+                  {isOpen ? (
+                    <ChevronUp className="w-4 h-4 text-[#4edea3] shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-[#86948a] shrink-0" />
+                  )}
+                </button>
+
+                {isOpen && (
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 text-xs text-[#bbcabf] leading-relaxed border-t border-[#23293c]/60">
+                    <p>{item.answer}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>
