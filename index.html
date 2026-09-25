@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ValidaDev – Gerador e Validador de CPF e CNPJ</title>
+    <meta
+      name="description"
+      content="Suíte técnica para validação e geração instantânea de CPF e CNPJ para desenvolvedores e QA. Algoritmo Módulo 11 da Receita Federal, geração em lote e conformidade LGPD."
+    />
+    <meta name="keywords" content="gerador de cpf, validador de cpf, gerador cnpj, validador cnpj, cnpj alfanumérico, teste de software, modulo 11, massa de dados, dev qa" />
+    <meta name="author" content="ValidaDev Engine" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- OpenGraph Social Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ValidaDev" />
+    <meta property="og:title" content="ValidaDev – Gerador e Validador de CPF e CNPJ" />
+    <meta
+      property="og:description"
+      content="Validação e geração instantânea de dados sintéticos para desenvolvedores e QA. Algoritmo oficial Módulo 11, zero retenção de dados e privacidade total."
+    />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ValidaDev – Gerador e Validador de CPF e CNPJ" />
+    <meta
+      name="twitter:description"
+      content="Validação e geração instantânea de dados sintéticos para desenvolvedores e QA. Algoritmo oficial Módulo 11, zero retenção de dados."
+    />
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon (SVG data URL shield) -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234edea3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z'%3E%3C/path%3E%3Cpath d='m9 12 2 2 4-4'%3E%3C/path%3E%3C/svg%3E"
+    />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "ValidaDev",
+          "url": "https://validadev.app",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "All",
+          "description": "Suíte técnica para validação e geração instantânea de CPF e CNPJ para desenvolvedores e times de QA.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BRL"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Os números de CPF e CNPJ gerados pertencem a pessoas ou empresas reais?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Não. Todos os números gerados pelo ValidaDev são gerados matematicamente de forma aleatória aplicando apenas a regra dos dígitos verificadores (Módulo 11). Não há qualquer vínculo com pessoas físicas ou jurídicas reais."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Posso usar os números gerados para cadastros em serviços ou abrir contas?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Não. O uso de dados fictícios para fins de fraude, obtenção de vantagem ilícita ou abertura de cadastros reais é crime tipificado no Código Penal Brasileiro. O ValidaDev destina-se exclusivamente a testes de software, QA e ambientes de desenvolvimento."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Os documentos digitados no validador são enviados para servidores?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Não. A validação e a geração são 100% executadas no lado do cliente (client-side) no próprio navegador. Zero requisições de dados, zero logs e total conformidade com a LGPD."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-[#0c1324] text-[#dce1fb] font-sans antialiased selection:bg-[#10b981] selection:text-[#003824]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

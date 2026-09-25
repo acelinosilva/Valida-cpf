@@ -1,0 +1,6 @@
+{
+  "name": "ValidaDev – Gerador e Validador de CPF e CNPJ",
+  "description": "Suíte técnica para validação e geração instantânea de CPF e CNPJ para desenvolvedores e QA. Algoritmo Módulo 11 da Receita Federal, geração em lote e conformidade LGPD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
