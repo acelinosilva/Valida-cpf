@@ -248,10 +248,6 @@ export const MainToolView: React.FC<MainToolViewProps> = ({
       {/* Hero / Context Header Bar */}
       <div className="pb-6 sm:pb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[#23293c]/50">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#191f31] text-[#4edea3] font-mono text-[10px] font-semibold uppercase mb-2 border border-[#3c4a42]/50 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4edea3] animate-ping"></span>
-            Algoritmo Oficial da Receita Federal • 100% Gratuito
-          </div>
           <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl text-[#dce1fb] font-semibold tracking-tight leading-tight">
             Gerador e Validador de CPF e CNPJ <span className="text-[#4edea3]">Atualizado</span>
           </h1>
@@ -918,91 +914,30 @@ export const MainToolView: React.FC<MainToolViewProps> = ({
         </div>
       </div>
 
-      {/* Educational & SEO Technical Deep-Dive Section (PRD Section 4.1 & 8) */}
-      <section className="mt-12 pt-8 border-t border-[#23293c]/60 flex flex-col gap-8">
+      {/* Link to Batch Mass Data */}
+      <div className="mt-8 p-5 rounded-xl bg-gradient-to-r from-[#151b2d] to-[#191f31] border border-[#3c4a42]/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1 text-[#4cd7f6] font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
-            <BookOpen className="w-4 h-4" />
-            <span>Guia Técnico e Educacional</span>
-          </div>
-          <h2 className="font-sans text-xl sm:text-2xl font-semibold text-[#dce1fb]">
-            Como Funciona a Matemática dos Documentos Brasileiros
-          </h2>
-          <p className="text-xs sm:text-sm text-[#bbcabf] mt-1 max-w-3xl leading-relaxed">
-            Entenda o cálculo oficial do Módulo 11 da Receita Federal e a reforma do novo CNPJ Alfanumérico que entra em vigor em 2026.
+          <h4 className="text-sm font-semibold text-[#dce1fb]">
+            Precisa de dezenas ou centenas de documentos para seus testes de carga?
+          </h4>
+          <p className="text-xs text-[#bbcabf] mt-0.5">
+            Utilize nosso gerador em lote para exportar JSON, CSV, SQL e scripts prontos para Playwright, Cypress e k6.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Card: CPF Algorithm Step by Step */}
-          <div className="p-5 rounded-xl bg-[#151b2d] border border-[#23293c] flex flex-col gap-3">
-            <h3 className="font-sans text-base font-semibold text-[#4edea3]">
-              1. O Algoritmo Módulo 11 no CPF
-            </h3>
-            <p className="text-xs text-[#bbcabf] leading-relaxed">
-              O CPF é composto por 9 dígitos base seguidos por 2 dígitos verificadores (DV1 e DV2).
-            </p>
-            <div className="space-y-2 text-xs text-[#dce1fb] font-mono bg-[#070d1f] p-3.5 rounded-lg border border-[#23293c]">
-              <div className="text-[#4cd7f6] font-semibold">// Cálculo do DV1:</div>
-              <div>Soma = (D1×10) + (D2×9) + (D3×8) + ... + (D9×2)</div>
-              <div>Resto = Soma % 11</div>
-              <div>DV1 = Resto &lt; 2 ? 0 : 11 - Resto</div>
-              <div className="text-[#4cd7f6] font-semibold pt-1">// Cálculo do DV2:</div>
-              <div>Soma = (D1×11) + (D2×10) + ... + (DV1×2)</div>
-              <div>Resto = Soma % 11</div>
-              <div>DV2 = Resto &lt; 2 ? 0 : 11 - Resto</div>
-            </div>
-            <p className="text-xs text-[#bbcabf]">
-              <strong className="text-[#dce1fb]">Atenção à Regra da Blacklist:</strong> Sequências com todos os dígitos idênticos (como <code>111.111.111-11</code>) passam matematicamente no Módulo 11, mas são expressamente rejeitadas pela Receita Federal e pelo ValidaDev.
-            </p>
-          </div>
-
-          {/* Card: 2026 Alphanumeric CNPJ Reform */}
-          <div className="p-5 rounded-xl bg-[#151b2d] border border-[#23293c] flex flex-col gap-3">
-            <div className="flex items-center justify-between">
-              <h3 className="font-sans text-base font-semibold text-[#4cd7f6]">
-                2. O Novo CNPJ Alfanumérico (Receita Federal 2026)
-              </h3>
-              <span className="px-2 py-0.5 rounded bg-[#4cd7f6]/10 text-[#4cd7f6] font-mono text-[10px] border border-[#4cd7f6]/30">
-                IN RFB 2.229/24
-              </span>
-            </div>
-            <p className="text-xs text-[#bbcabf] leading-relaxed">
-              Com o esgotamento iminente das combinações estritamente numéricas de CNPJ, a Receita Federal instituiu o formato alfanumérico com letras de A a Z nas 12 primeiras posições (raiz e filial), mantendo os 2 últimos dígitos estritamente numéricos para os DVs.
-            </p>
-            <div className="space-y-1.5 text-xs text-[#dce1fb] font-mono bg-[#070d1f] p-3.5 rounded-lg border border-[#23293c]">
-              <div className="text-[#4edea3] font-semibold">// Tabela de Conversão ASCII:</div>
-              <div>Valor = Código ASCII do Caractere - 48</div>
-              <div>'0' a '9' -&gt; 0 a 9</div>
-              <div>'A' (ASCII 65) -&gt; 17 | 'B' (66) -&gt; 18 ... 'Z' (90) -&gt; 42</div>
-              <div>Pesos: [5,4,3,2,9,8,7,6,5,4,3,2] aplicados sobre os valores</div>
-            </div>
-            <p className="text-xs text-[#bbcabf]">
-              O motor do ValidaDev já suporta nativamente a emissão e a auditoria dos novos CNPJs alfanuméricos para que seus sistemas estejam 100% prontos para 2026.
-            </p>
-          </div>
-        </div>
-
-        {/* Link to Batch Mass Data */}
-        <div className="p-5 rounded-xl bg-gradient-to-r from-[#151b2d] to-[#191f31] border border-[#3c4a42]/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <h4 className="text-sm font-semibold text-[#dce1fb]">
-              Precisa de dezenas ou centenas de documentos para seus testes de carga?
-            </h4>
-            <p className="text-xs text-[#bbcabf] mt-0.5">
-              Utilize nosso gerador em lote para exportar JSON, CSV, SQL e scripts prontos para Playwright, Cypress e k6.
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onNavigateToBatch}
-            className="px-4 py-2 rounded-lg bg-[#23293c] hover:bg-[#33394c] text-[#4edea3] font-medium text-xs flex items-center gap-1.5 transition-colors border border-[#3c4a42]/60 shrink-0"
-          >
-            <span>Ir para Lote / Massa de Testes</span>
-            <ArrowRight className="w-4 h-4 text-[#4edea3]" />
-          </button>
-        </div>
-      </section>
+        <a
+          href="/lote"
+          onClick={(e) => {
+            if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+              e.preventDefault();
+              onNavigateToBatch();
+            }
+          }}
+          className="px-4 py-2 rounded-lg bg-[#23293c] hover:bg-[#33394c] text-[#4edea3] font-medium text-xs flex items-center gap-1.5 transition-colors border border-[#3c4a42]/60 shrink-0"
+        >
+          <span>Ir para Lote / Massa de Testes</span>
+          <ArrowRight className="w-4 h-4 text-[#4edea3]" />
+        </a>
+      </div>
 
       {/* SEÇÃO: PARA QUE SERVE A FERRAMENTA (CASOS DE USO REAIS E LEGÍTIMOS) */}
       <section className="mt-12 pt-8 border-t border-[#23293c]/60 flex flex-col gap-6">

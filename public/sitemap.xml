@@ -14,31 +14,47 @@
 
   <!-- Lote e Massa de Testes para QA e CI/CD -->
   <url>
-    <loc>https://gerarcpfecnpj.vercel.app/?tab=lote-massa-de-testes</loc>
+    <loc>https://gerarcpfecnpj.vercel.app/lote</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Perguntas Frequentes (FAQ) e Módulo 11 -->
+  <url>
+    <loc>https://gerarcpfecnpj.vercel.app/faq</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Perguntas Frequentes (FAQ) e Módulo 11 -->
+  <!-- Sobre o Projeto e Arquitetura Sandbox Client-Side -->
   <url>
-    <loc>https://gerarcpfecnpj.vercel.app/?tab=faq</loc>
+    <loc>https://gerarcpfecnpj.vercel.app/sobre</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Sobre o Projeto e Arquitetura Sandbox -->
+  <!-- Políticas de Privacidade, LGPD e Termos de Uso -->
   <url>
-    <loc>https://gerarcpfecnpj.vercel.app/?tab=sobre</loc>
+    <loc>https://gerarcpfecnpj.vercel.app/politicas</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Políticas de Privacidade, LGPD e Termos de Uso -->
+  <!-- API e Integrações -->
   <url>
-    <loc>https://gerarcpfecnpj.vercel.app/?tab=politicas</loc>
+    <loc>https://gerarcpfecnpj.vercel.app/api</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Extensão Chrome -->
+  <url>
+    <loc>https://gerarcpfecnpj.vercel.app/extensao</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -101,14 +101,19 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenDisclaimer, onNaviga
 
         {/* Action Button */}
         <div className="pt-2 flex justify-start">
-          <button
-            type="button"
-            onClick={onNavigateToTool}
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                onNavigateToTool();
+              }
+            }}
             className="px-5 py-2.5 rounded-lg bg-[#4edea3] hover:bg-[#10b981] text-[#003824] font-semibold text-xs transition-colors flex items-center gap-2 shadow-md"
           >
             <span>Experimentar o Gerador &amp; Validador</span>
             <ArrowRight className="w-4 h-4 text-[#003824]" />
-          </button>
+          </a>
         </div>
       </div>
     </div>

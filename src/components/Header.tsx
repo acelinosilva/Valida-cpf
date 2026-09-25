@@ -15,6 +15,7 @@ import {
   Layers, 
   Sparkles 
 } from 'lucide-react';
+import { ROUTES } from '../routes';
 
 export type NavTab = 
   | 'gerador-e-validador'
@@ -48,25 +49,29 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'politicas', label: 'Políticas & Termos', icon: <FileText className="w-4 h-4" /> },
   ];
 
-  const handleNavClick = (id: NavTab) => {
-    onSelectTab(id);
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, id: NavTab) => {
+    // Permite que o usuário use Ctrl+Click ou botão do meio para abrir em nova aba se desejar
+    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+      e.preventDefault();
+      onSelectTab(id);
+      setMobileMenuOpen(false);
+    }
   };
 
   return (
-    <header className="fixed top-0 w-full z-40 bg-[#0c1324]/85 backdrop-blur-xl border-b border-[#23293c]/60 shadow-[0_1px_8px_rgba(0,0,0,0.35)]">
+    <header className="fixed top-0 w-full z-40 bg-[#0c1324]/90 backdrop-blur-xl border-b border-[#23293c]/70 shadow-[0_1px_8px_rgba(0,0,0,0.35)]">
       <div className="h-16 max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
         {/* Brand & Desktop Navigation */}
         <div className="flex items-center gap-6 xl:gap-8">
-          {/* Logo */}
-          <button 
-            onClick={() => handleNavClick('gerador-e-validador')}
+          {/* Logo como <a> nativo indexável */}
+          <a 
+            href={ROUTES['gerador-e-validador'].path}
+            onClick={(e) => handleLinkClick(e, 'gerador-e-validador')}
             className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4edea3] rounded-lg p-1 group text-left transition-transform active:scale-95"
-            aria-label="Ir para Gerador e Validador"
+            aria-label="Gerar CPF - Início e Gerador Principal"
           >
             <Logo size="md" />
-          </button>
+          </a>
 
           {/* RFB Badge - Desktop */}
           <div className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#23293c] text-[#4cd7f6] font-mono text-[10px] font-semibold tracking-wider uppercase border border-[#3c4a42]/40">
@@ -74,22 +79,25 @@ export const Header: React.FC<HeaderProps> = ({
             RFB 100% Atualizado
           </div>
 
-          {/* Desktop Nav Items */}
+          {/* Desktop Nav Items com links <a> reais para SEO e rastreamento */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Navegação Principal">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
+              const route = ROUTES[item.id];
               return (
-                <button
+                <a
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  href={route.path}
+                  onClick={(e) => handleLinkClick(e, item.id)}
                   className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                     isActive
                       ? 'text-[#4edea3] bg-[#191f31] border border-[#3c4a42]/70 font-semibold shadow-sm'
                       : 'text-[#bbcabf] hover:text-[#dce1fb] hover:bg-[#191f31]/50'
                   }`}
+                  aria-current={isActive ? 'page' : undefined}
                 >
                   {item.label}
-                </button>
+                </a>
               );
             })}
           </nav>
@@ -146,19 +154,22 @@ export const Header: React.FC<HeaderProps> = ({
 
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
+            const route = ROUTES[item.id];
             return (
-              <button
+              <a
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                href={route.path}
+                onClick={(e) => handleLinkClick(e, item.id)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-left transition-all ${
                   isActive
                     ? 'bg-[#191f31] text-[#4edea3] font-medium border border-[#3c4a42]'
                     : 'text-[#bbcabf] hover:bg-[#151b2d] hover:text-[#dce1fb]'
                 }`}
+                aria-current={isActive ? 'page' : undefined}
               >
                 {item.icon}
                 <span>{item.label}</span>
-              </button>
+              </a>
             );
           })}
 
@@ -168,12 +179,11 @@ export const Header: React.FC<HeaderProps> = ({
                 onOpenDisclaimerModal();
                 setMobileMenuOpen(false);
               }}
-              className="text-[#4edea3] hover:underline flex items-center gap-1.5"
+              className="text-[#86948a] hover:text-[#ffb4ab] flex items-center gap-1.5 py-1"
             >
-              <ShieldCheck className="w-4 h-4" />
-              <span>Aviso Legal &amp; Uso Ético</span>
+              <ShieldCheck className="w-3.5 h-3.5 text-[#ffb4ab]" />
+              <span>Aviso de Conformidade Legal</span>
             </button>
-            <span className="text-[#86948a] font-mono text-[11px]">v3.4 WASM</span>
           </div>
         </div>
       )}
